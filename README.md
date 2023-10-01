@@ -59,11 +59,11 @@
 
 ![ss 11](/public/images/docs/ss-11.png)
 
-## License
-
-MIT
-
 ## Supports
 
 - [Github Sponsor](https://github.com/sponsors/haikelz)
 - [Trakteer](https://trakteer.id/haikelz/tip)
+
+## License
+
+MIT

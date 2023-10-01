@@ -4,6 +4,7 @@ import { useAtom } from "jotai";
 import { useEffect } from "react";
 import customToast from "~components/custom-toast";
 import Table from "~components/table";
+import { tw } from "~lib/helpers";
 import { MAKS_TGL_PENGEMBALIAN, TGL_PINJAM } from "~lib/utils/constants";
 import { db } from "~lib/utils/db";
 import { saveDataToLocalStorage } from "~lib/utils/save-data-to-local-storage";
@@ -80,7 +81,11 @@ export default function ListBukuYangDipinjamClient() {
                 </h5>
               </td>
               <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                <p className="text-black font-medium dark:text-white">
+                <p
+                  className={tw(
+                    "inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium text-warning bg-warning"
+                  )}
+                >
                   {item.author}
                 </p>
               </td>

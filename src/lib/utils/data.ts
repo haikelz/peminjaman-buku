@@ -104,16 +104,6 @@ export const booksData: BooksWithoutId[] = [
     year: 1952,
   },
   {
-    author: "Giovanni Boccaccio",
-    country: "Italy",
-    imageLink: "/images/books/the-decameron.jpg",
-    language: "Italian",
-    link: "https://en.wikipedia.org/wiki/The_Decameron\n",
-    pages: 1024,
-    title: "The Decameron",
-    year: 1351,
-  },
-  {
     author: "Jorge Luis Borges",
     country: "Argentina",
     imageLink: "/images/books/ficciones.jpg",

@@ -6,6 +6,8 @@ import Image from "next/image";
 import { useDeferredValue, useMemo } from "react";
 import reactStringReplace from "react-string-replace";
 import customToast from "~components/custom-toast";
+import PageNumbers from "~components/page-numbers";
+import { usePagination } from "~hooks";
 import { saveDataToLocalStorage } from "~lib/utils/save-data-to-local-storage";
 import { booksAtom, searchBookAtom } from "~store";
 import { BooksProps } from "~types";
@@ -21,6 +23,11 @@ export default function DashboardClient({
 
   const searchBook = useAtomValue(searchBookAtom);
 
+  const { currentPage, setCurrentPage, currentData, pageNumbers } =
+    usePagination(booksData);
+
+  const currentBooks: BooksProps[] = currentData;
+
   const deferredSearch = useDeferredValue(searchBook);
 
   function handleAdd(item: BooksProps): void {
@@ -35,7 +42,7 @@ export default function DashboardClient({
 
   const memoizedFilteredData = useMemo(
     () =>
-      booksData.filter((item) => {
+      currentBooks.filter((item) => {
         if (deferredSearch === "") {
           return item;
         } else if (
@@ -44,7 +51,7 @@ export default function DashboardClient({
           return item;
         }
       }),
-    [deferredSearch, booksData]
+    [deferredSearch, currentBooks]
   );
 
   return (
@@ -109,6 +116,11 @@ export default function DashboardClient({
       ) : (
         <h3 className="text-center font-bold text-2xl">Tidak ada data!</h3>
       )}
+      <PageNumbers
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        pageNumbers={pageNumbers}
+      />
     </>
   );
 }

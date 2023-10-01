@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { tw } from "~lib/helpers";
 import { SidebarLinkGroup } from "./sidebar-link-group";
 
 type SidebarProps = {
@@ -66,9 +67,10 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
   return (
     <aside
       ref={sidebarRef}
-      className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
+      className={tw(
+        "absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0",
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
-      }`}
+      )}
     >
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
@@ -120,10 +122,11 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                     <>
                       <Link
                         href="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={tw(
+                          "group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4",
                           (pathname === "/" || pathname === "/dashboard") &&
-                          "bg-graydark dark:bg-meta-4"
-                        }`}
+                            "bg-graydark dark:bg-meta-4"
+                        )}
                         onClick={(e) => {
                           e.preventDefault();
                           sidebarExpanded
@@ -158,9 +161,10 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                         </svg>
                         Dashboard
                         <svg
-                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
+                          className={tw(
+                            "absolute right-4 top-1/2 -translate-y-1/2 fill-current",
                             open && "rotate-180"
-                          }`}
+                          )}
                           width="20"
                           height="20"
                           viewBox="0 0 20 20"
@@ -177,17 +181,19 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                       </Link>
                       {/* <!-- Dropdown Menu Start --> */}
                       <div
-                        className={`translate transform overflow-hidden ${
+                        className={tw(
+                          "translate transform overflow-hidden",
                           !open && "hidden"
-                        }`}
+                        )}
                       >
                         <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                           <li>
                             <Link
                               href="/dashboard"
-                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ${
+                              className={tw(
+                                "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white",
                                 pathname === "/dashboard" && "text-white"
-                              } `}
+                              )}
                             >
                               List Buku
                             </Link>
@@ -203,10 +209,11 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
               <li>
                 <Link
                   href="/dashboard/pinjam-buku"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                  className={tw(
+                    "group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4",
                     pathname.includes("pinjam-buku") &&
-                    "bg-graydark dark:bg-meta-4"
-                  }`}
+                      "bg-graydark dark:bg-meta-4"
+                  )}
                 >
                   <svg
                     className="fill-current"
@@ -232,10 +239,11 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
               <li>
                 <Link
                   href="/dashboard/list-buku-yang-dipinjam"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                  className={tw(
+                    "group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4",
                     pathname.includes("list-buku-yang-dipinjam") &&
-                    "bg-graydark dark:bg-meta-4"
-                  }`}
+                      "bg-graydark dark:bg-meta-4"
+                  )}
                 >
                   <svg
                     className="fill-current"
@@ -274,10 +282,11 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                 <li>
                   <Link
                     href="/dashboard/list-users"
-                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    className={tw(
+                      "group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4",
                       pathname.includes("list-users") &&
-                      "bg-graydark dark:bg-meta-4"
-                    }`}
+                        "bg-graydark dark:bg-meta-4"
+                    )}
                   >
                     <svg
                       className="fill-current"
@@ -287,7 +296,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <g clip-path="url(#clip0_130_9728)">
+                      <g clipPath="url(#clip0_130_9728)">
                         <path
                           d="M3.45928 0.984375H1.6874C1.04053 0.984375 0.478027 1.51875 0.478027 2.19375V3.96563C0.478027 4.6125 1.0124 5.175 1.6874 5.175H3.45928C4.10615 5.175 4.66865 4.64063 4.66865 3.96563V2.16562C4.64053 1.51875 4.10615 0.984375 3.45928 0.984375ZM3.3749 3.88125H1.77178V2.25H3.3749V3.88125Z"
                           fill=""

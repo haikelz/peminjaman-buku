@@ -21,6 +21,7 @@ export default function CSVDownloader({ filename, data }: CSVDownloaderProps) {
       filename={filename}
       data={data}
       className="bg-primary text-white px-4 py-1.5 rounded-md font-bold"
+      target="_blank"
     >
       Download CSV
     </CSVLink>

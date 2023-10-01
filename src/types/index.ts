@@ -22,3 +22,13 @@ export type BorrowedBooksProps = {
   tgl_pinjam: string;
   tgl_pengembalian: string;
 } & BooksProps;
+
+export type ListUsersProps = {
+  id: number;
+  user_id: string;
+  name: string;
+  judul_buku: string;
+  penulis: string;
+  tgl_pinjam: string;
+  maks_tgl_pengembalian: string;
+};

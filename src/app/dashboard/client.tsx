@@ -4,6 +4,7 @@ import { useAtom, useAtomValue } from "jotai";
 import { customAlphabet } from "nanoid";
 import Image from "next/image";
 import { useDeferredValue, useMemo } from "react";
+import reactStringReplace from "react-string-replace";
 import customToast from "~components/custom-toast";
 import { saveDataToLocalStorage } from "~lib/utils/save-data-to-local-storage";
 import { booksAtom, searchBookAtom } from "~store";
@@ -20,6 +21,8 @@ export default function DashboardClient({
 
   const searchBook = useAtomValue(searchBookAtom);
 
+  const deferredSearch = useDeferredValue(searchBook);
+
   function handleAdd(item: BooksProps): void {
     const newBooks = [...books];
     newBooks.push({ ...item, id: nanoid() });
@@ -33,24 +36,22 @@ export default function DashboardClient({
   const memoizedFilteredData = useMemo(
     () =>
       booksData.filter((item) => {
-        if (searchBook === "") {
+        if (deferredSearch === "") {
           return item;
         } else if (
-          item.title.toLowerCase().includes(searchBook.toLowerCase())
+          item.title.toLowerCase().includes(deferredSearch.toLowerCase())
         ) {
           return item;
         }
       }),
-    [searchBook, booksData]
+    [deferredSearch, booksData]
   );
-
-  const deferreFilteredData = useDeferredValue(memoizedFilteredData);
 
   return (
     <>
-      {deferreFilteredData.length ? (
+      {memoizedFilteredData.length ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 grid-rows-1 gap-10">
-          {deferreFilteredData.map((item, index) => (
+          {memoizedFilteredData.map((item, index) => (
             <div
               key={index + 1}
               className="dark:bg-graydark bg-bodydark1 rounded-md overflow-hidden"
@@ -64,7 +65,22 @@ export default function DashboardClient({
               />
               <div className="p-4">
                 <div className="mb-4">
-                  <p className="font-bold text-2xl">{item.title}</p>
+                  <p className="font-bold text-2xl">
+                    {deferredSearch
+                      ? reactStringReplace(
+                          item.title,
+                          deferredSearch,
+                          (match: string, index: number) => (
+                            <span
+                              key={index + 1}
+                              className="bg-meta-6 dark:text-black"
+                            >
+                              {match}
+                            </span>
+                          )
+                        )
+                      : item.title}
+                  </p>
                   <p className="text-lg">
                     Penulis: <span className="font-bold">{item.author}</span>
                   </p>

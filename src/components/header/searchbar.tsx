@@ -1,11 +1,11 @@
 "use client";
 
-import { searchBookAtom } from "~store";
-import { useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import { usePathname } from "next/navigation";
+import { searchBookAtom } from "~store";
 
 export function Searchbar() {
-  const setSearchBook = useSetAtom(searchBookAtom);
+  const [searchBook, setSearchBook] = useAtom(searchBookAtom);
 
   const pathname = usePathname();
 
@@ -46,6 +46,7 @@ export function Searchbar() {
       <input
         type="search"
         name="search"
+        value={searchBook}
         placeholder="Type to search..."
         className="w-full bg-transparent pl-12 pr-4 font-medium focus:outline-none xl:w-125"
         onChange={(e) => setSearchBook(e.target.value)}

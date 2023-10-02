@@ -19,7 +19,7 @@ export default async function PinjamBuku() {
 
   return (
     <div>
-      <Breadcrumb pageName="Pinjam Buku" />
+      <Breadcrumb name="Pinjam Buku" />
       <PinjamBukuClient session={session} />
     </div>
   );

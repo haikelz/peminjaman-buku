@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function ListBukuYangDipinjam() {
   return (
     <div>
-      <Breadcrumb pageName="List Buku yang Dipinjam" />
+      <Breadcrumb name="List Buku yang Dipinjam" />
       <ListPeminjamClient />
     </div>
   );

@@ -6,11 +6,12 @@ import customToast from "~components/custom-toast";
 import PageNumbers from "~components/page-numbers";
 import Table from "~components/table";
 import { usePagination } from "~hooks";
-import { tw } from "~lib/helpers";
+import { toRupiah, tw } from "~lib/helpers";
 import { MAKS_TGL_PENGEMBALIAN, TGL_PINJAM } from "~lib/utils/constants";
 import { db } from "~lib/utils/db";
 import { saveDataToLocalStorage } from "~lib/utils/save-data-to-local-storage";
 import { borrowedBooksAtom } from "~store";
+import { BorrowedBooksProps } from "~types";
 
 export default function ListBukuYangDipinjamClient() {
   const [borrowedBooks, setBorrowedBooks] = useAtom(borrowedBooksAtom);
@@ -20,20 +21,32 @@ export default function ListBukuYangDipinjamClient() {
 
   const currentBooks = currentData.sort((a, b) => -1);
 
-  async function handleReturnBook(id: number, title: string) {
+  async function handleReturnBook(id: number, title: string): Promise<void> {
     if (TGL_PINJAM > MAKS_TGL_PENGEMBALIAN) {
       customToast({
-        text: "Kamu telat mengembalikan buku!",
+        text: `Kamu telat mengembalikan buku! Setiap buku yang dikembalikan lewat waktunya dikenakan denda sebesar Rp.2000/hari. Denda kamu: ${toRupiah(
+          (new Date().getDate() - new Date(MAKS_TGL_PENGEMBALIAN).getDate()) *
+            2000
+        )}`,
         status: "error",
       });
+
+      setTimeout(() => {
+        customToast({
+          text: "Jangan telat lagi ya kalau ga mau didenda!",
+          status: "error",
+        });
+      }, 5000);
+
       return;
     }
 
-    const data = [...borrowedBooks];
+    const data: BorrowedBooksProps[] = [...borrowedBooks];
     const filteredData = data.filter((item) => item.id !== id);
 
     setBorrowedBooks(filteredData);
     saveDataToLocalStorage("borrowed-books", filteredData);
+
     customToast({
       text: `Terima kasih telah mengembalikan buku ${title} tepat waktu!`,
       status: "success",

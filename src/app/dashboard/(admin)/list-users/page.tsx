@@ -27,7 +27,7 @@ export default async function ListUsers() {
 
   return (
     <div>
-      <Breadcrumb pageName="List Users" />
+      <Breadcrumb name="List Users" />
       <ListUsersClient data={data} />
     </div>
   );

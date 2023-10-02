@@ -4,7 +4,6 @@ import { redirect } from "next/navigation";
 import { ofetch } from "ofetch";
 import { options } from "~app/api/auth/[...nextauth]/options";
 import Breadcrumb from "~components/breadcrumb";
-import customToast from "~components/custom-toast";
 import { env } from "~env.mjs";
 import DashboardClient from "./client";
 
@@ -31,9 +30,8 @@ async function getBooks() {
     );
 
     return response;
-  } catch (err: any) {
+  } catch (err) {
     console.error(err);
-    customToast({ text: err, status: "error" });
   }
 }
 
@@ -47,7 +45,7 @@ export default async function Dashboard() {
 
   return (
     <div>
-      <Breadcrumb pageName="Dashboard" />
+      <Breadcrumb name="Dashboard" />
       <DashboardClient booksData={booksData.data} />
     </div>
   );

@@ -26,6 +26,7 @@ export function DropdownUser() {
         triggerRef?.current?.contains(target as any)
       )
         return;
+
       setDropdownOpen(false);
     }
 

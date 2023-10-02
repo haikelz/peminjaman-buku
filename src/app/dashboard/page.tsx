@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { ofetch } from "ofetch";
 import { options } from "~app/api/auth/[...nextauth]/options";
 import Breadcrumb from "~components/breadcrumb";
+import customToast from "~components/custom-toast";
 import { env } from "~env.mjs";
 import DashboardClient from "./client";
 
@@ -17,18 +18,23 @@ export const metadata: Metadata = {
 };
 
 async function getBooks() {
-  const response = await ofetch(
-    `${
-      condition === "development" ? DEVELOPMENT_URL : PRODUCTION_URL
-    }/api/books`,
-    {
-      method: "GET",
-      responseType: "json",
-      parseResponse: JSON.parse,
-    }
-  );
+  try {
+    const response = await ofetch(
+      `${
+        condition === "development" ? DEVELOPMENT_URL : PRODUCTION_URL
+      }/api/books`,
+      {
+        method: "GET",
+        responseType: "json",
+        parseResponse: JSON.parse,
+      }
+    );
 
-  return response;
+    return response;
+  } catch (err: any) {
+    console.error(err);
+    customToast({ text: err, status: "error" });
+  }
 }
 
 export default async function Dashboard() {

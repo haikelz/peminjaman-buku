@@ -12,6 +12,7 @@ import { MAKS_TGL_PENGEMBALIAN, TGL_PINJAM } from "~lib/utils/constants";
 import { db } from "~lib/utils/db";
 import { saveDataToLocalStorage } from "~lib/utils/save-data-to-local-storage";
 import { booksAtom, borrowedBooksAtom } from "~store";
+import { BorrowedBooksProps } from "~types";
 
 export default function PinjamBukuClient({ session }: { session: Session }) {
   const [books, setBooks] = useAtom(booksAtom);
@@ -19,6 +20,8 @@ export default function PinjamBukuClient({ session }: { session: Session }) {
 
   const { currentPage, setCurrentPage, pageNumbers, currentData } =
     usePagination(books);
+
+  const currentBooks = currentData.sort((a, b) => -1);
 
   function handleDelete(id: string) {
     const data = [...books];
@@ -28,7 +31,7 @@ export default function PinjamBukuClient({ session }: { session: Session }) {
     saveDataToLocalStorage("books", filteredData);
   }
 
-  async function handleBorrowBook(item: any) {
+  async function handleBorrowBook(item: BorrowedBooksProps) {
     const data = [...borrowedBooks];
 
     data.push({
@@ -72,7 +75,7 @@ export default function PinjamBukuClient({ session }: { session: Session }) {
   return (
     <>
       <div className="flex flex-col gap-10 mt-5">
-        {currentData.length ? (
+        {books.length ? (
           <Table
             tableHead={
               <tr className="bg-gray-2 text-left dark:bg-meta-4">
@@ -93,7 +96,7 @@ export default function PinjamBukuClient({ session }: { session: Session }) {
                 </th>
               </tr>
             }
-            tableData={currentData.map((item, key) => (
+            tableData={currentBooks.map((item, key) => (
               <tr key={key}>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark xl:pl-11">
                   <p className="text-sm font-medium">{item.id}</p>
@@ -148,7 +151,7 @@ export default function PinjamBukuClient({ session }: { session: Session }) {
           </h3>
         )}
       </div>
-      {currentData.length ? (
+      {currentBooks.length && books.length > 12 ? (
         <PageNumbers
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}

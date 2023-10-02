@@ -1,9 +1,10 @@
 "use client";
 
+import { atom, useAtom } from "jotai";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { tw } from "~lib/helpers";
 import { SidebarLinkGroup } from "./sidebar-link-group";
 
@@ -12,19 +13,21 @@ type SidebarProps = {
   setSidebarOpen: (arg: boolean) => void;
 };
 
+let storedSidebarExpanded = "true";
+
+const sidebarExpandedAtom = atom<boolean>(
+  storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
+);
+
 export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
+  const [sidebarExpanded, setSidebarExpanded] = useAtom(sidebarExpandedAtom);
+
   const pathname = usePathname();
 
   const { data: session } = useSession();
 
   const triggerRef = useRef<HTMLButtonElement>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
-
-  let storedSidebarExpanded = "true";
-
-  const [sidebarExpanded, setSidebarExpanded] = useState<boolean>(
-    storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
-  );
 
   // close on click outside
   useEffect(() => {

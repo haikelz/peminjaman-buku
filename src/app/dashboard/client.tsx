@@ -116,11 +116,13 @@ export default function DashboardClient({
       ) : (
         <h3 className="text-center font-bold text-2xl">Tidak ada data!</h3>
       )}
-      <PageNumbers
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        pageNumbers={pageNumbers}
-      />
+      {currentBooks.length && booksData.length > 12 ? (
+        <PageNumbers
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          pageNumbers={pageNumbers}
+        />
+      ) : null}
     </>
   );
 }

@@ -1,5 +1,3 @@
-"use client";
-
 import { Session } from "next-auth";
 import Image from "next/image";
 

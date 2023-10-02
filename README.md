@@ -14,6 +14,7 @@
 
 ## Getting Started
 
+- Clone this project, install all dependencies with `pnpm install`.
 - First, you will need to setup your OAuth Github App. Go to create one, and grab your Github Id and Github Secret, fill it in `NEXT_PUBLIC_GITHUB_ID` and `NEXT_PUBLIC_GITHUB_SECRET`.
 - Setup your Google Cloud Project. Grab your Google Id and Google Secret, fill it in `NEXT_PUBLIC_GOOGLE_ID` and `NEXT_PUBLIC_GOOGLE_SECRET`.
 - Setup your new Supabase Project and grab the Supabase Url and Supabase Key, fill it in `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_KEY`.

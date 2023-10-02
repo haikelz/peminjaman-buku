@@ -20,7 +20,8 @@ export default async function ListUsers() {
     .from("peminjam_buku")
     .select(
       "id, user_id, name, judul_buku, penulis, tgl_pinjam, maks_tgl_pengembalian"
-    );
+    )
+    .order("tgl_pinjam", { ascending: false });
 
   if (error) throw error;
 

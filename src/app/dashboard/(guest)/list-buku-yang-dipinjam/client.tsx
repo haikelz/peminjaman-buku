@@ -18,6 +18,8 @@ export default function ListBukuYangDipinjamClient() {
   const { currentPage, setCurrentPage, pageNumbers, currentData } =
     usePagination(borrowedBooks);
 
+  const currentBooks = currentData.sort((a, b) => -1);
+
   async function handleReturnBook(id: number, title: string) {
     if (TGL_PINJAM > MAKS_TGL_PENGEMBALIAN) {
       customToast({
@@ -52,7 +54,7 @@ export default function ListBukuYangDipinjamClient() {
   return (
     <>
       <div className="flex flex-col gap-10 mt-5">
-        {currentData.length ? (
+        {borrowedBooks.length ? (
           <Table
             tableHead={
               <tr className="bg-gray-2 text-left dark:bg-meta-4">
@@ -76,7 +78,7 @@ export default function ListBukuYangDipinjamClient() {
                 </th>
               </tr>
             }
-            tableData={currentData.map((item, key) => (
+            tableData={currentBooks.map((item, key) => (
               <tr key={key}>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark xl:pl-11">
                   <p className="text-sm font-medium">{item.id}</p>
@@ -124,7 +126,7 @@ export default function ListBukuYangDipinjamClient() {
           </h3>
         )}
       </div>
-      {currentData.length ? (
+      {currentBooks.length && borrowedBooks.length > 12 ? (
         <PageNumbers
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}

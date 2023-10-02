@@ -1,8 +1,10 @@
+import { SetStateAction } from "jotai";
+import { Dispatch } from "react";
 import { tw } from "~lib/helpers";
 
 type PageNumbersProps = {
   currentPage: number;
-  setCurrentPage: any;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
   pageNumbers: number[];
 };
 

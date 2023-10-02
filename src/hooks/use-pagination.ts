@@ -1,12 +1,13 @@
 "use client";
 
-import { atom, useAtom, useAtomValue } from "jotai";
+import { atom, useAtomValue } from "jotai";
+import { useState } from "react";
 
-const currentPageAtom = atom<number>(1);
 const dataPerPageAtom = atom<number>(12);
 
 export function usePagination(data: any[]) {
-  const [currentPage, setCurrentPage] = useAtom(currentPageAtom);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
   const dataPerPage = useAtomValue(dataPerPageAtom);
 
   const indexOfLastData: number = currentPage * dataPerPage;

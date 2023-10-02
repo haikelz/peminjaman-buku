@@ -12,7 +12,7 @@ export default function PageNumbers({
   pageNumbers,
 }: PageNumbersProps) {
   return (
-    <div className="flex justify-center items-center mt-8 space-x-4">
+    <div className="flex justify-center flex-wrap gap-3 items-center mt-8">
       {pageNumbers.map((page) => (
         <button
           type="button"

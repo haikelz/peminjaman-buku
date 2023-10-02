@@ -84,11 +84,13 @@ export default function ListUsersClient({ data }: { data: ListUsersProps[] }) {
           </h3>
         )}
       </div>
-      <PageNumbers
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        pageNumbers={pageNumbers}
-      />
+      {currentBooks.length ? (
+        <PageNumbers
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          pageNumbers={pageNumbers}
+        />
+      ) : null}
     </>
   );
 }

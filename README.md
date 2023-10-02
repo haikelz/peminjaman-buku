@@ -31,6 +31,7 @@
 
 - After you fill all the needed env variables, run the project by typing `pnpm run dev`.
 - Go to `http://localhost:3000` and see the result.
+- By the way, the default username and password for admin role is: **username = pak_dengklek**, **password = 102938**
 
 ## Tech Stack
 

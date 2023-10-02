@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
 import { ChildrenProps } from "~types";
-import "./_css/data-tables-css.css";
 import "./_css/globals.css";
 import "./_css/satoshi.css";
 import Wrapper from "./wrapper";

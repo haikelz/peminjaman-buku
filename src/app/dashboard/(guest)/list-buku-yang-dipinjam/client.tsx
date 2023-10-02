@@ -24,7 +24,7 @@ export default function ListBukuYangDipinjamClient() {
   async function handleReturnBook(id: number, title: string): Promise<void> {
     if (TGL_PINJAM > MAKS_TGL_PENGEMBALIAN) {
       customToast({
-        text: `Kamu telat mengembalikan buku! Setiap buku yang dikembalikan lewat waktunya dikenakan denda sebesar Rp.2000/hari. Denda kamu: ${toRupiah(
+        text: `Kamu telat mengembalikan buku! Denda kamu: ${toRupiah(
           (new Date().getDate() - new Date(MAKS_TGL_PENGEMBALIAN).getDate()) *
             2000
         )}`,

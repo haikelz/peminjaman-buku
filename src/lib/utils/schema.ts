@@ -5,7 +5,7 @@ export const schema = z.object({
   password: z
     .string()
     .min(1, { message: "Password is required!" })
-    .regex(/[^\W]/gi, {
+    .regex(/[\w]/gi, {
       message: "The characters must be alphabet or number",
     }),
 });

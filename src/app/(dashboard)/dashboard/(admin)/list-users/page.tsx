@@ -3,8 +3,8 @@ import { redirect } from "next/navigation";
 import { options } from "~app/api/auth/[...nextauth]/options";
 import Breadcrumb from "~components/breadcrumb";
 import { db } from "~lib/utils/db";
-import ListUsersClient from "./client";
 import { ListUsersProps } from "~types";
+import ListUsersClient from "./client";
 
 async function getListUsers(): Promise<ListUsersProps[]> {
   const { data, error } = await db

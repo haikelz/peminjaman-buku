@@ -12,7 +12,7 @@ import { MAKS_TGL_PENGEMBALIAN, TGL_PINJAM } from "~lib/utils/constants";
 import { db } from "~lib/utils/db";
 import { saveDataToLocalStorage } from "~lib/utils/save-data-to-local-storage";
 import { booksAtom, borrowedBooksAtom } from "~store";
-import { BorrowedBooksProps } from "~types";
+import { BooksProps } from "~types";
 
 export default function PinjamBukuClient({ session }: { session: Session }) {
   const [books, setBooks] = useAtom(booksAtom);
@@ -31,8 +31,8 @@ export default function PinjamBukuClient({ session }: { session: Session }) {
     saveDataToLocalStorage("books", filteredData);
   }
 
-  async function handleBorrowBook(item: BorrowedBooksProps): Promise<void> {
-    const data = [...borrowedBooks];
+  async function handleBorrowBook(item: BooksProps): Promise<void> {
+    const data: any = [...borrowedBooks];
 
     data.push({
       ...item,
@@ -41,7 +41,7 @@ export default function PinjamBukuClient({ session }: { session: Session }) {
     });
 
     setBorrowedBooks(data);
-    handleDelete(item.id);
+    handleDelete(item.id as string);
     saveDataToLocalStorage("borrowed-books", data);
     customToast({
       text: `Berhasil meminjam buku ${item.title}!`,

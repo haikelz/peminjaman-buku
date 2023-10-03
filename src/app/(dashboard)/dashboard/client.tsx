@@ -30,7 +30,7 @@ export default function DashboardClient({
 
   const deferredSearch = useDeferredValue(searchBook);
 
-  function handleAdd(item: BooksProps): void {
+  function handleAdd(item: BooksProps) {
     const newBooks = [...books];
     newBooks.push({ ...item, id: nanoid() });
 

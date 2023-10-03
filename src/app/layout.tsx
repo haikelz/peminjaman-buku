@@ -14,8 +14,8 @@ export const dynamic = "force-dynamic";
 
 export default function RootLayout({ children }: ChildrenProps) {
   return (
-    <html lang="en">
-      <body suppressHydrationWarning={true}>
+    <html lang="en" suppressHydrationWarning>
+      <body>
         <Wrapper>
           <div className="dark:bg-boxdark-2 dark:text-bodydark">{children}</div>
           <Toaster />

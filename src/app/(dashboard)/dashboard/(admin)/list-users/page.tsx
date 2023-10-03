@@ -4,8 +4,22 @@ import { options } from "~app/api/auth/[...nextauth]/options";
 import Breadcrumb from "~components/breadcrumb";
 import { db } from "~lib/utils/db";
 import ListUsersClient from "./client";
+import { ListUsersProps } from "~types";
+
+async function getListUsers(): Promise<ListUsersProps[]> {
+  const { data, error } = await db
+    .from("peminjam_buku")
+    .select(
+      "id, user_id, name, judul_buku, penulis, tgl_pinjam, maks_tgl_pengembalian"
+    )
+    .order("tgl_pinjam", { ascending: false });
+
+  if (error) throw error;
+  return data;
+}
 
 export default async function ListUsers() {
+  const listUsers = await getListUsers();
   const session = await getServerSession(options);
 
   if (!session) {
@@ -16,19 +30,10 @@ export default async function ListUsers() {
     return redirect("/dashboard");
   }
 
-  const { data, error } = await db
-    .from("peminjam_buku")
-    .select(
-      "id, user_id, name, judul_buku, penulis, tgl_pinjam, maks_tgl_pengembalian"
-    )
-    .order("tgl_pinjam", { ascending: false });
-
-  if (error) throw error;
-
   return (
     <div>
       <Breadcrumb name="List Users" />
-      <ListUsersClient data={data} />
+      <ListUsersClient listUsers={listUsers} />
     </div>
   );
 }

@@ -1,12 +1,23 @@
 import { tw } from "~lib/helpers";
-import { DarkModeSwitcher } from "./dark-mode-switcher";
-import { DropdownUser } from "./dropdown-user";
-import { Searchbar } from "./searchbar";
+import dynamic from "next/dynamic";
 
 type HeaderProps = {
   sidebarOpen: string | boolean | undefined;
   setSidebarOpen: (args: boolean) => void;
 };
+
+const DarkModeSwitcher = dynamic(
+  () => import("./dark-mode-switcher").then((obj) => obj.DarkModeSwitcher),
+  { ssr: false }
+);
+
+const Searchbar = dynamic(() =>
+  import("./searchbar").then((obj) => obj.Searchbar)
+);
+
+const DropdownUser = dynamic(() =>
+  import("./dropdown-user").then((obj) => obj.DropdownUser)
+);
 
 export default function Header({ sidebarOpen, setSidebarOpen }: HeaderProps) {
   return (

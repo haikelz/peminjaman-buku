@@ -21,7 +21,7 @@ export default function PinjamBukuClient({ session }: { session: Session }) {
   const { currentPage, setCurrentPage, pageNumbers, currentData } =
     usePagination(books);
 
-  const currentBooks = currentData.sort((a, b) => -1);
+  const currentBooks = currentData.sort(() => -1);
 
   function handleDelete(id: string) {
     const data = [...books];
@@ -31,7 +31,7 @@ export default function PinjamBukuClient({ session }: { session: Session }) {
     saveDataToLocalStorage("books", filteredData);
   }
 
-  async function handleBorrowBook(item: BorrowedBooksProps) {
+  async function handleBorrowBook(item: BorrowedBooksProps): Promise<void> {
     const data = [...borrowedBooks];
 
     data.push({
@@ -62,7 +62,6 @@ export default function PinjamBukuClient({ session }: { session: Session }) {
         maks_tgl_pengembalian: MAKS_TGL_PENGEMBALIAN,
       },
     ]);
-
     if (error) throw error;
   }
 
@@ -147,7 +146,7 @@ export default function PinjamBukuClient({ session }: { session: Session }) {
           />
         ) : (
           <h3 className="text-center font-bold text-2xl">
-            List buku yang ingin kamu pinjam kosong!
+            List buku yang ingin kamu pinjam tidak ada!
           </h3>
         )}
       </div>

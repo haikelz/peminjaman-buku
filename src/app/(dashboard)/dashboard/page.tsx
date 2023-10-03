@@ -5,6 +5,7 @@ import { ofetch } from "ofetch";
 import { options } from "~app/api/auth/[...nextauth]/options";
 import Breadcrumb from "~components/breadcrumb";
 import { env } from "~env.mjs";
+import { BooksProps } from "~types";
 import DashboardClient from "./client";
 
 const { DEVELOPMENT_URL, PRODUCTION_URL } = env;
@@ -16,7 +17,11 @@ export const metadata: Metadata = {
   description: "Dashboard",
 };
 
-async function getBooks() {
+type GetBooksProps = {
+  data: BooksProps[];
+};
+
+async function getBooks(): Promise<GetBooksProps | undefined> {
   try {
     const response = await ofetch(
       `${
@@ -46,7 +51,7 @@ export default async function Dashboard() {
   return (
     <div>
       <Breadcrumb name="Dashboard" />
-      <DashboardClient booksData={booksData.data} />
+      <DashboardClient booksData={booksData?.data as BooksProps[]} />
     </div>
   );
 }

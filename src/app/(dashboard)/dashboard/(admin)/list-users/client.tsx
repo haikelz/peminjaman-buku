@@ -7,17 +7,21 @@ import { usePagination } from "~hooks";
 import { tw } from "~lib/helpers";
 import { ListUsersProps } from "~types";
 
-export default function ListUsersClient({ data }: { data: ListUsersProps[] }) {
+export default function ListUsersClient({
+  listUsers,
+}: {
+  listUsers: ListUsersProps[];
+}) {
   const { currentData, currentPage, setCurrentPage, pageNumbers } =
-    usePagination(data);
+    usePagination(listUsers);
 
   const currentBooks = currentData;
 
   return (
     <>
-      <CSVDownloader filename="list_users" data={data} />
+      <CSVDownloader filename="list_users" data={listUsers} />
       <div className="flex flex-col gap-10 mt-5">
-        {data.length ? (
+        {listUsers.length ? (
           <Table
             tableHead={
               <tr className="bg-gray-2 text-left dark:bg-meta-4">
@@ -84,7 +88,7 @@ export default function ListUsersClient({ data }: { data: ListUsersProps[] }) {
           </h3>
         )}
       </div>
-      {currentBooks.length && data.length > 12 ? (
+      {currentBooks.length && listUsers.length > 12 ? (
         <PageNumbers
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}

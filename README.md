@@ -6,6 +6,7 @@
 ## Features
 
 - Multirole auth login guest and admin (with github, google, or credentials).
+- Book recommendations(random pick).
 - CRUD operations.
 - Search the books that user want.
 - Save the user data who lend a/the book to Supabase and display it into a table in `/list-users` page(only admin who can access this page).

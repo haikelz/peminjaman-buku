@@ -6,8 +6,8 @@ import customToast from "~components/custom-toast";
 import PageNumbers from "~components/page-numbers";
 import Table from "~components/table";
 import { usePagination } from "~hooks";
-import { tw } from "~lib/helpers";
-import { MAKS_TGL_PENGEMBALIAN, TGL_PINJAM } from "~lib/utils/constants";
+import { toRupiah, tw } from "~lib/helpers";
+import { TGL_PINJAM } from "~lib/utils/constants";
 import { db } from "~lib/utils/db";
 import { saveDataToLocalStorage } from "~lib/utils/save-data-to-local-storage";
 import { borrowedBooksAtom } from "~store";
@@ -27,13 +27,13 @@ export default function ListBukuYangDipinjamClient() {
     tgl_pengembalian: string
   ): Promise<void> {
     // Denda
-    if (TGL_PINJAM > MAKS_TGL_PENGEMBALIAN) {
+    if (TGL_PINJAM > tgl_pengembalian) {
       customToast({
-        text: `Kamu telat mengembalikan buku! Denda kamu: ${
+        text: `Kamu telat mengembalikan buku! Denda kamu: ${toRupiah(
           (new Date(TGL_PINJAM).getDate() -
             new Date(tgl_pengembalian).getDate()) *
-          2000
-        }`,
+            2000
+        )}`,
         status: "error",
       });
 

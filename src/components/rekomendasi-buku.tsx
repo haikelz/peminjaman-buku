@@ -37,7 +37,7 @@ export default function RekomendasiBuku() {
           <div className="bg-gray dark:bg-boxdark-2 p-6 rounded-md max-w-4xl w-full">
             <div className="flex justify-between items-center w-full">
               <h1 className="font-bold text-2xl dark:text-white text-black">
-                Rekomendasi buku hari ini:
+                Rekomendasi buku:
               </h1>
               <button
                 type="button"
@@ -80,7 +80,7 @@ export default function RekomendasiBuku() {
                       "flex justify-center items-center h-full hover:bg-black-2/50 transition-all"
                     )}
                   >
-                    <p className="font-bold text-lg">{item.title}</p>
+                    <span className="font-bold text-xl">{item.title}</span>
                   </div>
                 </div>
               ))}

@@ -2,32 +2,54 @@
 
 import addDays from "date-fns/addDays";
 import format from "date-fns/format";
+import parse from "date-fns/parse";
 import { atom, useAtom } from "jotai";
 import Image from "next/image";
+import { useEffect } from "react";
 import { randomize, tw } from "~lib/helpers";
-import { TGL_PINJAM } from "~lib/utils/constants";
 import { booksData } from "~lib/utils/data";
 import { saveDataToLocalStorage } from "~lib/utils/save-data-to-local-storage";
 import { BooksProps } from "~types";
 
-const isOpenAtom = atom<boolean>(true);
+const now = format(new Date(), "dd MMMM yyyy");
+const dateOneDay = format(
+  addDays(parse(format(new Date(), "yyyy-MM-dd"), "yyyy-MM-dd", new Date()), 1),
+  "dd MMMM yyyy"
+);
+
+const isRekomendasiAtom = atom<boolean>(true);
 
 export default function RekomendasiBuku() {
-  const [isOpen, setIsOpen] = useAtom(isOpenAtom);
+  const [isRekomendasi, setIsRekomendasi] = useAtom(isRekomendasiAtom);
 
   function handleClick() {
-    setIsOpen(false);
+    setIsRekomendasi(false);
+    saveDataToLocalStorage("is-rekomendasi", false);
     saveDataToLocalStorage(
       "date-rekomendasi",
-      format(addDays(new Date(TGL_PINJAM), 1), "dd MMMM yyyy")
+      format(
+        addDays(
+          parse(format(new Date(), "yyyy-MM-dd"), "yyyy-MM-dd", new Date()),
+          1
+        ),
+        "dd MMMM yyyy"
+      )
     );
   }
 
   const rekomendasiBuku = randomize(booksData) as BooksProps[];
 
+  useEffect(() => {
+    if (localStorage.getItem("is-rekomendasi")) {
+      setIsRekomendasi(
+        JSON.parse(localStorage.getItem("is-rekomendasi") || "")
+      );
+    }
+  }, [setIsRekomendasi]);
+
   return (
     <>
-      {isOpen ? (
+      {isRekomendasi ? (
         <div
           className={tw(
             "w-full min-h-screen max-w-full overflow-hidden fixed",
@@ -76,11 +98,13 @@ export default function RekomendasiBuku() {
                   />
                   <div
                     className={tw(
-                      "absolute text-transparent hover:text-white w-full",
+                      "absolute text-transparent hover:text-white w-full p-4",
                       "flex justify-center items-center h-full hover:bg-black-2/50 transition-all"
                     )}
                   >
-                    <span className="font-bold text-xl">{item.title}</span>
+                    <span className="font-bold text-center text-xl">
+                      {item.title}
+                    </span>
                   </div>
                 </div>
               ))}

@@ -12,6 +12,12 @@ type UsePaginationProps<T> = {
   currentData: Array<T>;
 };
 
+/**
+ * A custom hook to handle pagination.
+ * Basically we set the total of all data, total data per page, and page numbers(total of all data / total data per page)
+ * @param {Array<T>} data
+ * @return {Object} currentPage, setCurrentPage, pageNumbers, currentData
+ */
 export function usePagination<T>(data: Array<T>): UsePaginationProps<T> {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
@@ -22,11 +28,9 @@ export function usePagination<T>(data: Array<T>): UsePaginationProps<T> {
 
   const currentData = data.slice(indexOfFirstData, indexOfLastData);
 
-  const pageNumbers: number[] = [];
-
-  for (let i = 1; i <= Math.ceil(data.length / dataPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const pageNumbers: number[] = new Array(Math.ceil(data.length / dataPerPage))
+    .fill(null)
+    .map((_, index) => index + 1);
 
   return { currentPage, setCurrentPage, pageNumbers, currentData };
 }

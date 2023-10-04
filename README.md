@@ -57,10 +57,6 @@
 
 ![ss 8](/public/images/docs/ss-8.png)
 
-![ss 9](/public/images/docs/ss-9.png)
-
-![ss 11](/public/images/docs/ss-11.png)
-
 ## Supports
 
 - [Github Sponsor](https://github.com/sponsors/haikelz)

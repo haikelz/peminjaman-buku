@@ -35,7 +35,6 @@ export default function DashboardClient({
     newBooks.push({ ...item, id: nanoid() });
 
     setBooks(newBooks);
-
     saveDataToLocalStorage("books", newBooks);
     customToast({ text: "Sudah dimasukkan ke dalam list!", status: "success" });
   }

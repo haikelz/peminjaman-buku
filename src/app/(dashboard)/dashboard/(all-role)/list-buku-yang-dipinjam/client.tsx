@@ -6,7 +6,7 @@ import customToast from "~components/custom-toast";
 import PageNumbers from "~components/page-numbers";
 import Table from "~components/table";
 import { usePagination } from "~hooks";
-import { toRupiah, tw } from "~lib/helpers";
+import { tw } from "~lib/helpers";
 import { MAKS_TGL_PENGEMBALIAN, TGL_PINJAM } from "~lib/utils/constants";
 import { db } from "~lib/utils/db";
 import { saveDataToLocalStorage } from "~lib/utils/save-data-to-local-storage";
@@ -19,15 +19,21 @@ export default function ListBukuYangDipinjamClient() {
   const { currentPage, setCurrentPage, pageNumbers, currentData } =
     usePagination(borrowedBooks);
 
-  const currentBooks = currentData.sort((a, b) => -1);
+  const currentBooks = currentData.sort(() => -1);
 
-  async function handleReturnBook(id: number, title: string): Promise<void> {
+  async function handleReturnBook(
+    id: number,
+    title: string,
+    tgl_pengembalian: string
+  ): Promise<void> {
+    // Denda
     if (TGL_PINJAM > MAKS_TGL_PENGEMBALIAN) {
       customToast({
-        text: `Kamu telat mengembalikan buku! Denda kamu: ${toRupiah(
-          (new Date().getDate() - new Date(MAKS_TGL_PENGEMBALIAN).getDate()) *
-            2000
-        )}`,
+        text: `Kamu telat mengembalikan buku! Denda kamu: ${
+          (new Date(TGL_PINJAM).getDate() -
+            new Date(tgl_pengembalian).getDate()) *
+          2000
+        }`,
         status: "error",
       });
 
@@ -52,6 +58,7 @@ export default function ListBukuYangDipinjamClient() {
       status: "success",
     });
 
+    // delete user that was returned the book in supabase
     const { error } = await db.from("peminjam_buku").delete().eq("id", id);
     if (error) throw error;
   }
@@ -124,7 +131,13 @@ export default function ListBukuYangDipinjamClient() {
                   <div className="flex items-center">
                     <button
                       className="bg-primary rounded-md px-3.5 text-white font-bold py-1.5"
-                      onClick={() => handleReturnBook(item.id, item.title)}
+                      onClick={() =>
+                        handleReturnBook(
+                          item.id,
+                          item.title,
+                          item.tgl_pengembalian
+                        )
+                      }
                     >
                       Kembalikan
                     </button>

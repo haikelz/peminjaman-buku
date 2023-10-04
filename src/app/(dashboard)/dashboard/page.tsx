@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
+import dynamic from "next/dynamic";
 import { redirect } from "next/navigation";
 import { ofetch } from "ofetch";
 import { options } from "~app/api/auth/[...nextauth]/options";
@@ -7,6 +8,10 @@ import Breadcrumb from "~components/breadcrumb";
 import { env } from "~env.mjs";
 import { BooksProps } from "~types";
 import DashboardClient from "./client";
+
+const RekomendasiBuku = dynamic(() => import("~components/rekomendasi-buku"), {
+  ssr: false,
+});
 
 const { DEVELOPMENT_URL, PRODUCTION_URL } = env;
 
@@ -51,6 +56,7 @@ export default async function Dashboard() {
   return (
     <div>
       <Breadcrumb name="Dashboard" />
+      <RekomendasiBuku />
       <DashboardClient booksData={booksData?.data as BooksProps[]} />
     </div>
   );

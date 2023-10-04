@@ -5,6 +5,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GithubProvider, { GithubProfile } from "next-auth/providers/github";
 import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
 import { env } from "~env.mjs";
+import { db } from "~lib/utils/db";
 
 const {
   NEXT_PUBLIC_GITHUB_ID,
@@ -25,7 +26,8 @@ const created_at = format(new Date(), "cccc, dd MMMM yyyy, k:m:s", {
 export const options: NextAuthOptions = {
   providers: [
     GithubProvider({
-      profile(profile: GithubProfile): Awaitable<User> {
+      profile(profile: GithubProfile, session): Awaitable<User> {
+        // const { } = await db.from('').insert('is_rekomendasi')
         return {
           ...profile,
           id: profile.id.toString(),

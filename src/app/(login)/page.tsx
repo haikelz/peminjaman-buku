@@ -21,7 +21,7 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col min-h-screen justify-center items-center p-4">
-      <form className="flex flex-col justify-center items-center bg-white drop-shadow-lg p-6 rounded-xl">
+      <div className="flex flex-col justify-center items-center bg-white drop-shadow-lg p-6 rounded-xl">
         <Image src="/logo.svg" alt="logo" width={300} height={300} />
         <h3 className="text-2xl font-bold text-center my-7 text-black">
           Login to Sistem Peminjaman Buku
@@ -36,7 +36,7 @@ export default async function Home() {
             admin
           </Link>{" "}
         </p>
-      </form>
+      </div>
     </div>
   );
 }

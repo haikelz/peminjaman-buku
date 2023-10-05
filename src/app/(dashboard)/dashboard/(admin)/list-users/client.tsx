@@ -8,9 +8,12 @@ import { tw } from "~lib/helpers";
 import { ListUsersProps } from "~types";
 
 export default function ListUsersClient({ listUsers }: { listUsers: ListUsersProps[] }) {
-  const { currentData, currentPage, setCurrentPage, pageNumbers } = usePagination(listUsers);
-
-  const currentBooks = currentData;
+  const {
+    currentData: currentBooks,
+    currentPage,
+    setCurrentPage,
+    pageNumbers,
+  } = usePagination(listUsers);
 
   return (
     <>

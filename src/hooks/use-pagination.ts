@@ -3,6 +3,13 @@
 import { atom, useAtomValue } from "jotai";
 import { Dispatch, SetStateAction, useState } from "react";
 
+/**
+ * A custom hook to handle pagination.
+ * Basically we set the total of all data, total data per page, and page numbers(total of all data / total data per page)
+ * @param {Array<T>} data
+ * @return {Object} currentPage, setCurrentPage, pageNumbers, currentData
+ */
+
 const dataPerPageAtom = atom<number>(12);
 
 type UsePaginationProps<T> = {
@@ -12,12 +19,6 @@ type UsePaginationProps<T> = {
   currentData: Array<T>;
 };
 
-/**
- * A custom hook to handle pagination.
- * Basically we set the total of all data, total data per page, and page numbers(total of all data / total data per page)
- * @param {Array<T>} data
- * @return {Object} currentPage, setCurrentPage, pageNumbers, currentData
- */
 export function usePagination<T>(data: Array<T>): UsePaginationProps<T> {
   const [currentPage, setCurrentPage] = useState<number>(1);
 

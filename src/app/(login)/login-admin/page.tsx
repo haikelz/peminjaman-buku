@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { options } from "~app/api/auth/[...nextauth]/options";
+
 import LoginAdminClient from "./client";
 
 export const metadata: Metadata = {

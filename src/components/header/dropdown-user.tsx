@@ -17,6 +17,13 @@ export function DropdownUser() {
   const triggerRef = useRef<HTMLAnchorElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  function handleLogout() {
+    signOut({ callbackUrl: "/" });
+
+    localStorage.removeItem("is-rekomendasi");
+    localStorage.removeItem("date-rekomendasi");
+  }
+
   useEffect(() => {
     function clickHandler({ target }: MouseEvent) {
       if (!dropdownRef.current) return;
@@ -31,7 +38,6 @@ export function DropdownUser() {
     }
 
     document.addEventListener("click", clickHandler);
-
     return () => document.removeEventListener("click", clickHandler);
   }, [dropdownOpen, setDropdownOpen]);
 
@@ -87,7 +93,8 @@ export function DropdownUser() {
         onFocus={() => setDropdownOpen(true)}
         onBlur={() => setDropdownOpen(false)}
         className={tw(
-          "absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark",
+          "absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke",
+          "bg-white shadow-default dark:border-strokedark dark:bg-boxdark",
           dropdownOpen === true ? "block" : "hidden"
         )}
       >
@@ -119,8 +126,11 @@ export function DropdownUser() {
           </li>
         </ul>
         <button
-          className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
-          onClick={() => signOut({ callbackUrl: "/" })}
+          className={tw(
+            "flex items-center gap-3.5 py-4 px-6 text-sm font-medium",
+            "w-full duration-300 ease-in-out hover:text-primary lg:text-base"
+          )}
+          onClick={handleLogout}
         >
           <svg
             className="fill-current"

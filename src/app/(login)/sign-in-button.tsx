@@ -64,7 +64,7 @@ export function SignInWithGoogle() {
           fill="#EB4335"
         />
       </svg>
-      <span>Google</span>
+      <span className="text-black">Google</span>
     </button>
   );
 }

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { tw } from "~lib/helpers";
+
 import { SidebarLinkGroup } from "./sidebar-link-group";
 
 type SidebarProps = {
@@ -16,7 +17,7 @@ type SidebarProps = {
 let storedSidebarExpanded = "true";
 
 const sidebarExpandedAtom = atom<boolean>(
-  storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
+  storedSidebarExpanded === null ? false : storedSidebarExpanded === "true",
 );
 
 export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
@@ -72,7 +73,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
       ref={sidebarRef}
       className={tw(
         "absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0",
-        sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        sidebarOpen ? "translate-x-0" : "-translate-x-full",
       )}
     >
       {/* <!-- SIDEBAR HEADER --> */}
@@ -109,18 +110,14 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
         <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
           {/* <!-- Menu Group --> */}
           <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              MENU
-            </h3>
+            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">MENU</h3>
 
             <ul className="mb-6 flex flex-col gap-1.5">
               {/* <!-- Menu Item Dashboard --> */}
               <SidebarLinkGroup
-                activeCondition={
-                  pathname === "/" || pathname.includes("dashboard")
-                }
+                activeCondition={pathname === "/" || pathname.includes("dashboard")}
               >
-                {(handleClick, open) => {
+                {(handleClick, isOpen) => {
                   return (
                     <>
                       <Link
@@ -128,13 +125,11 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                         className={tw(
                           "group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4",
                           (pathname === "/" || pathname === "/dashboard") &&
-                            "bg-graydark dark:bg-meta-4"
+                            "bg-graydark dark:bg-meta-4",
                         )}
                         onClick={(e) => {
                           e.preventDefault();
-                          sidebarExpanded
-                            ? handleClick()
-                            : setSidebarExpanded(true);
+                          sidebarExpanded ? handleClick() : setSidebarExpanded(true);
                         }}
                       >
                         <svg
@@ -166,7 +161,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                         <svg
                           className={tw(
                             "absolute right-4 top-1/2 -translate-y-1/2 fill-current",
-                            open && "rotate-180"
+                            isOpen && "rotate-180",
                           )}
                           width="20"
                           height="20"
@@ -184,10 +179,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                       </Link>
                       {/* <!-- Dropdown Menu Start --> */}
                       <div
-                        className={tw(
-                          "translate transform overflow-hidden",
-                          !open && "hidden"
-                        )}
+                        className={tw("translate transform overflow-hidden", !isOpen && "hidden")}
                       >
                         <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                           <li>
@@ -195,7 +187,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                               href="/dashboard"
                               className={tw(
                                 "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white",
-                                pathname === "/dashboard" && "text-white"
+                                pathname === "/dashboard" && "text-white",
                               )}
                             >
                               List Buku
@@ -214,8 +206,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                   href="/dashboard/pinjam-buku"
                   className={tw(
                     "group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4",
-                    pathname.includes("pinjam-buku") &&
-                      "bg-graydark dark:bg-meta-4"
+                    pathname.includes("pinjam-buku") && "bg-graydark dark:bg-meta-4",
                   )}
                 >
                   <svg
@@ -244,8 +235,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                   href="/dashboard/list-buku-yang-dipinjam"
                   className={tw(
                     "group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4",
-                    pathname.includes("list-buku-yang-dipinjam") &&
-                      "bg-graydark dark:bg-meta-4"
+                    pathname.includes("list-buku-yang-dipinjam") && "bg-graydark dark:bg-meta-4",
                   )}
                 >
                   <svg
@@ -287,8 +277,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
                     href="/dashboard/list-users"
                     className={tw(
                       "group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4",
-                      pathname.includes("list-users") &&
-                        "bg-graydark dark:bg-meta-4"
+                      pathname.includes("list-users") && "bg-graydark dark:bg-meta-4",
                     )}
                   >
                     <svg

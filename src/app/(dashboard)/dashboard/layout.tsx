@@ -1,4 +1,5 @@
 import { ChildrenProps } from "~types";
+
 import Wrapper from "./wrapper";
 
 export default function Layout({ children }: ChildrenProps) {

@@ -2,6 +2,7 @@
 
 import { useAtom } from "jotai";
 import { usePathname } from "next/navigation";
+import { tw } from "~lib/helpers";
 import { searchBookAtom } from "~store";
 
 export function Searchbar() {
@@ -11,16 +12,17 @@ export function Searchbar() {
 
   return (
     <div
-      className={`relative hidden ${
+      className={tw(
+        "relative hidden",
         pathname.includes("/pinjam-buku") ||
-        pathname.includes("/list-buku-yang-dipinjam") ||
-        pathname.includes("/list-users") ||
-        pathname.includes("/profile")
+          pathname.includes("/list-buku-yang-dipinjam") ||
+          pathname.includes("/list-users") ||
+          pathname.includes("/profile")
           ? ""
-          : "sm:block"
-      }`}
+          : "sm:block",
+      )}
     >
-      <button className="absolute left-4 top-1/2 -translate-y-1/2">
+      <div className="absolute left-4 top-1/2 -translate-y-1/2">
         <svg
           className="fill-body hover:fill-primary dark:fill-bodydark dark:hover:fill-primary"
           width="20"
@@ -42,13 +44,13 @@ export function Searchbar() {
             fill=""
           />
         </svg>
-      </button>
+      </div>
       <input
         type="search"
         name="search"
         value={searchBook}
         placeholder="Type to search..."
-        className="w-full bg-transparent pl-12 pr-4 font-medium focus:outline-none xl:w-125"
+        className="w-full bg-transparent rounded-md pl-12 pr-4 font-medium focus:outline-none xl:w-125"
         onChange={(e) => setSearchBook(e.target.value)}
       />
     </div>

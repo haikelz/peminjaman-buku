@@ -12,6 +12,8 @@
 - Save the user data who lend a/the book to Supabase and display it into a table in `/list-users` page(only admin who can access this page).
 - Show the user profile.
 - Export the users list to CSV format and only admin who can download it.
+- Books recommendation
+- Change profile picture and background(**WIP**).
 
 ## Getting Started
 

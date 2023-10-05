@@ -16,23 +16,25 @@ import { BorrowedBooksProps } from "~types";
 export default function ListBukuYangDipinjamClient() {
   const [borrowedBooks, setBorrowedBooks] = useAtom(borrowedBooksAtom);
 
-  const { currentPage, setCurrentPage, pageNumbers, currentData } =
-    usePagination(borrowedBooks);
+  const { currentPage, setCurrentPage, pageNumbers, currentData } = usePagination(borrowedBooks);
 
   const currentBooks = currentData.sort(() => -1);
 
   async function handleReturnBook(
     id: number,
     title: string,
-    tgl_pengembalian: string
+    tgl_pengembalian: string,
   ): Promise<void> {
-    // Denda
+    /**
+     * Fitur denda
+     * - Compare tanggal sekarang dengan batas tanggal pengembalian.
+     * - Jika sudah melebihi batas, maka akan kena denda
+     * - Jika tidak, maka tidak akan kena denda
+     */
     if (TGL_PINJAM > tgl_pengembalian) {
       customToast({
         text: `Kamu telat mengembalikan buku! Denda kamu: ${toRupiah(
-          (new Date(TGL_PINJAM).getDate() -
-            new Date(tgl_pengembalian).getDate()) *
-            2000
+          (new Date(TGL_PINJAM).getDate() - new Date(tgl_pengembalian).getDate()) * 2000,
         )}`,
         status: "error",
       });
@@ -65,9 +67,7 @@ export default function ListBukuYangDipinjamClient() {
 
   useEffect(() => {
     if (localStorage.getItem("borrowed-books")) {
-      setBorrowedBooks(
-        JSON.parse(localStorage.getItem("borrowed-books") as string)
-      );
+      setBorrowedBooks(JSON.parse(localStorage.getItem("borrowed-books") as string));
     }
   }, [setBorrowedBooks]);
 
@@ -78,9 +78,7 @@ export default function ListBukuYangDipinjamClient() {
           <Table
             tableHead={
               <tr className="bg-gray-2 text-left dark:bg-meta-4">
-                <th className="py-4 px-4 font-bold text-black dark:text-white xl:pl-11">
-                  Id
-                </th>
+                <th className="py-4 px-4 font-bold text-black dark:text-white xl:pl-11">Id</th>
                 <th className="min-w-[220px] py-4 px-4 font-bold text-black dark:text-white xl:pl-11">
                   Judul
                 </th>
@@ -93,9 +91,7 @@ export default function ListBukuYangDipinjamClient() {
                 <th className="min-w-[120px] py-4 px-4 font-bold text-black dark:text-white">
                   Maks tgl Pengembalian
                 </th>
-                <th className="py-4 px-4 font-bold text-black dark:text-white">
-                  Actions
-                </th>
+                <th className="py-4 px-4 font-bold text-black dark:text-white">Actions</th>
               </tr>
             }
             tableData={currentBooks.map((item, key) => (
@@ -104,40 +100,28 @@ export default function ListBukuYangDipinjamClient() {
                   <p className="text-sm font-medium">{item.id}</p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark xl:pl-11">
-                  <h5 className="font-medium text-black dark:text-white">
-                    {item.title}
-                  </h5>
+                  <h5 className="font-medium text-black dark:text-white">{item.title}</h5>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <p
                     className={tw(
-                      "inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium text-warning bg-warning"
+                      "inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium text-warning bg-warning",
                     )}
                   >
                     {item.author}
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="text-black font-medium dark:text-white">
-                    {item.tgl_pinjam}
-                  </p>
+                  <p className="text-black font-medium dark:text-white">{item.tgl_pinjam}</p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="text-black font-medium dark:text-white">
-                    {item.tgl_pengembalian}
-                  </p>
+                  <p className="text-black font-medium dark:text-white">{item.tgl_pengembalian}</p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <div className="flex items-center">
                     <button
                       className="bg-primary rounded-md px-3.5 text-white font-bold py-1.5"
-                      onClick={() =>
-                        handleReturnBook(
-                          item.id,
-                          item.title,
-                          item.tgl_pengembalian
-                        )
-                      }
+                      onClick={() => handleReturnBook(item.id, item.title, item.tgl_pengembalian)}
                     >
                       Kembalikan
                     </button>
@@ -147,9 +131,7 @@ export default function ListBukuYangDipinjamClient() {
             ))}
           />
         ) : (
-          <h3 className="text-center font-bold text-2xl">
-            List buku yang dipinjam kosong!
-          </h3>
+          <h3 className="text-center font-bold text-2xl">List buku yang dipinjam kosong!</h3>
         )}
       </div>
       {currentBooks.length && borrowedBooks.length > 12 ? (

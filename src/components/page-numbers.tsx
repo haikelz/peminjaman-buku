@@ -8,11 +8,9 @@ type PageNumbersProps = {
   pageNumbers: number[];
 };
 
-export default function PageNumbers({
-  currentPage,
-  setCurrentPage,
-  pageNumbers,
-}: PageNumbersProps) {
+export default function PageNumbers(
+  { currentPage, setCurrentPage, pageNumbers }: PageNumbersProps,
+) {
   return (
     <div className="flex justify-center flex-wrap gap-3 items-center mt-8">
       {pageNumbers.map((page) => (
@@ -21,7 +19,7 @@ export default function PageNumbers({
           aria-label="per page"
           className={tw(
             "cursor-pointer px-4 py-2 bg-primary text-white font-bold rounded-md duration-200 transition-all",
-            currentPage === page ? "bg-meta-1" : ""
+            currentPage === page ? "bg-meta-1" : "",
           )}
           onClick={() => setCurrentPage(page)}
           key={page}

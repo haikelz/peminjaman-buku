@@ -1,5 +1,5 @@
-import { tw } from "~lib/helpers";
 import dynamic from "next/dynamic";
+import { tw } from "~lib/helpers";
 
 type HeaderProps = {
   sidebarOpen: string | boolean | undefined;
@@ -8,16 +8,12 @@ type HeaderProps = {
 
 const DarkModeSwitcher = dynamic(
   () => import("./dark-mode-switcher").then((obj) => obj.DarkModeSwitcher),
-  { ssr: false }
+  { ssr: false },
 );
 
-const Searchbar = dynamic(() =>
-  import("./searchbar").then((obj) => obj.Searchbar)
-);
+const Searchbar = dynamic(() => import("./searchbar").then((obj) => obj.Searchbar));
 
-const DropdownUser = dynamic(() =>
-  import("./dropdown-user").then((obj) => obj.DropdownUser)
-);
+const DropdownUser = dynamic(() => import("./dropdown-user").then((obj) => obj.DropdownUser));
 
 export default function Header({ sidebarOpen, setSidebarOpen }: HeaderProps) {
   return (
@@ -38,19 +34,19 @@ export default function Header({ sidebarOpen, setSidebarOpen }: HeaderProps) {
                 <span
                   className={tw(
                     "relative left-0 top-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-[0] duration-200 ease-in-out dark:bg-white",
-                    !sidebarOpen && "!w-full delay-300"
+                    !sidebarOpen && "!w-full delay-300",
                   )}
                 ></span>
                 <span
                   className={tw(
                     "relative left-0 top-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-150 duration-200 ease-in-out dark:bg-white",
-                    !sidebarOpen && "delay-400 !w-full"
+                    !sidebarOpen && "delay-400 !w-full",
                   )}
                 ></span>
                 <span
                   className={tw(
                     "relative left-0 top-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-200 duration-200 ease-in-out dark:bg-white",
-                    !sidebarOpen && "!w-full delay-500"
+                    !sidebarOpen && "!w-full delay-500",
                   )}
                 ></span>
               </span>
@@ -58,13 +54,13 @@ export default function Header({ sidebarOpen, setSidebarOpen }: HeaderProps) {
                 <span
                   className={tw(
                     "absolute left-2.5 top-0 block h-full w-0.5 rounded-sm bg-black delay-300 duration-200 ease-in-out dark:bg-white",
-                    !sidebarOpen && "!h-0 !delay-[0]"
+                    !sidebarOpen && "!h-0 !delay-[0]",
                   )}
                 ></span>
                 <span
                   className={tw(
                     "delay-400 absolute left-0 top-2.5 block h-0.5 w-full rounded-sm bg-black duration-200 ease-in-out dark:bg-white",
-                    !sidebarOpen && "!h-0 !delay-200"
+                    !sidebarOpen && "!h-0 !delay-200",
                   )}
                 ></span>
               </span>

@@ -14,7 +14,7 @@ export async function GET() {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET",
         },
-      }
+      },
     );
   } catch (err) {
     return NextResponse.rewrite(`Failed to fetch API, server error!`, {

@@ -1,5 +1,5 @@
-import { BooksProps, BorrowedBooksProps } from "~types";
 import { atom } from "jotai";
+import { BooksProps, BorrowedBooksProps } from "~types";
 
 export const borrowedBooksAtom = atom<BorrowedBooksProps[] | []>([]);
 export const booksAtom = atom<BooksProps[] | []>([]);

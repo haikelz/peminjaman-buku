@@ -14,17 +14,12 @@ import { BooksProps } from "~types";
 
 const nanoid = customAlphabet("1234567890", 8);
 
-export default function DashboardClient({
-  booksData,
-}: {
-  booksData: BooksProps[];
-}) {
+export default function DashboardClient({ booksData }: { booksData: BooksProps[] }) {
   const [books, setBooks] = useAtom(booksAtom);
 
   const searchBook = useAtomValue(searchBookAtom);
 
-  const { currentPage, setCurrentPage, currentData, pageNumbers } =
-    usePagination(booksData);
+  const { currentPage, setCurrentPage, currentData, pageNumbers } = usePagination(booksData);
 
   const currentBooks: BooksProps[] = currentData;
 
@@ -44,13 +39,11 @@ export default function DashboardClient({
       currentBooks.filter((item) => {
         if (deferredSearch === "") {
           return item;
-        } else if (
-          item.title.toLowerCase().includes(deferredSearch.toLowerCase())
-        ) {
+        } else if (item.title.toLowerCase().includes(deferredSearch.toLowerCase())) {
           return item;
         }
       }),
-    [deferredSearch, currentBooks]
+    [deferredSearch, currentBooks],
   );
 
   return (
@@ -77,13 +70,10 @@ export default function DashboardClient({
                           item.title,
                           deferredSearch,
                           (match: string, index: number) => (
-                            <span
-                              key={index + 1}
-                              className="bg-meta-6 dark:text-black"
-                            >
+                            <span key={index + 1} className="bg-meta-6 dark:text-black">
                               {match}
                             </span>
-                          )
+                          ),
                         )
                       : item.title}
                   </p>
@@ -94,8 +84,7 @@ export default function DashboardClient({
                     Bahasa: <span className="font-bold">{item.language}</span>
                   </p>
                   <p className="text-lg">
-                    Jumlah halaman:{" "}
-                    <span className="font-bold">{item.pages}</span>
+                    Jumlah halaman: <span className="font-bold">{item.pages}</span>
                   </p>
                 </div>
                 <div className="w-full flex justify-end items-center">

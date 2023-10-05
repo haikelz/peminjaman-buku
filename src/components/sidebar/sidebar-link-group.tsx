@@ -1,21 +1,20 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { atom, useAtom } from "jotai";
+import { ReactNode, useMemo } from "react";
 
 type SidebarLinkGroupProps = {
   children: (handleClick: () => void, open: boolean) => ReactNode;
   activeCondition: boolean;
 };
 
-export function SidebarLinkGroup({
-  children,
-  activeCondition,
-}: SidebarLinkGroupProps) {
-  const [open, setOpen] = useState<boolean>(activeCondition);
+export function SidebarLinkGroup({ children, activeCondition }: SidebarLinkGroupProps) {
+  const isOpenAtom = useMemo(() => atom<boolean>(activeCondition), [activeCondition]);
+  const [isOpen, setIsOpen] = useAtom(isOpenAtom);
 
   function handleClick() {
-    setOpen(!open);
+    setIsOpen(!isOpen);
   }
 
-  return <li>{children(handleClick, open)}</li>;
+  return <li>{children(handleClick, isOpen)}</li>;
 }

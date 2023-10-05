@@ -18,8 +18,7 @@ export default function PinjamBukuClient({ session }: { session: Session }) {
   const [books, setBooks] = useAtom(booksAtom);
   const [borrowedBooks, setBorrowedBooks] = useAtom(borrowedBooksAtom);
 
-  const { currentPage, setCurrentPage, pageNumbers, currentData } =
-    usePagination(books);
+  const { currentPage, setCurrentPage, pageNumbers, currentData } = usePagination(books);
 
   const currentBooks = currentData.sort(() => -1);
 
@@ -78,9 +77,7 @@ export default function PinjamBukuClient({ session }: { session: Session }) {
           <Table
             tableHead={
               <tr className="bg-gray-2 text-left dark:bg-meta-4">
-                <th className="py-4 px-4 font-bold text-black dark:text-white xl:pl-11">
-                  Id
-                </th>
+                <th className="py-4 px-4 font-bold text-black dark:text-white xl:pl-11">Id</th>
                 <th className="min-w-[220px] py-4 px-4 font-bold text-black dark:text-white xl:pl-11">
                   Judul
                 </th>
@@ -90,9 +87,7 @@ export default function PinjamBukuClient({ session }: { session: Session }) {
                 <th className="min-w-[120px] py-4 px-4 font-bold text-black dark:text-white">
                   Penulis
                 </th>
-                <th className="py-4 px-4 font-bold text-black dark:text-white">
-                  Actions
-                </th>
+                <th className="py-4 px-4 font-bold text-black dark:text-white">Actions</th>
               </tr>
             }
             tableData={currentBooks.map((item, key) => (
@@ -101,19 +96,15 @@ export default function PinjamBukuClient({ session }: { session: Session }) {
                   <p className="text-sm font-medium">{item.id}</p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark xl:pl-11">
-                  <h5 className="font-medium text-black dark:text-white">
-                    {item.title}
-                  </h5>
+                  <h5 className="font-medium text-black dark:text-white">{item.title}</h5>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="text-black font-medium dark:text-white">
-                    {item.language}
-                  </p>
+                  <p className="text-black font-medium dark:text-white">{item.language}</p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <p
                     className={tw(
-                      "inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium text-warning bg-warning"
+                      "inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium text-warning bg-warning",
                     )}
                   >
                     {item.author}

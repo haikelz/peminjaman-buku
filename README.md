@@ -13,7 +13,6 @@
 - Show the user profile.
 - Export the users list to CSV format and only admin who can download it.
 - Books recommendation
-- Change profile picture and background(**WIP**).
 
 ## Getting Started
 

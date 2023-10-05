@@ -20,7 +20,7 @@ export default function RekomendasiBuku() {
     saveDataToLocalStorage("is-rekomendasi", false);
   }
 
-  const rekomendasiBuku = useMemo(() => randomize(booksData.slice(0, 12)), [booksData]);
+  const rekomendasiBuku = useMemo(() => randomize(booksData.slice(0, 12)), []);
 
   useEffect(() => {
     if (localStorage.getItem("is-rekomendasi")) {

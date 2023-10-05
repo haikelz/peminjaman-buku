@@ -6,6 +6,7 @@ export function SignInWithGithub() {
   return (
     <button
       type="button"
+      data-cy="sign-in-with-github-button"
       aria-label="sign in with github"
       onClick={() => signIn("github", { callbackUrl: "/dashboard" })}
       className="bg-black rounded-full flex justify-center items-center font-bold px-3 py-1.5 text-white w-full hover:bg-black-2"
@@ -34,6 +35,7 @@ export function SignInWithGoogle() {
   return (
     <button
       type="button"
+      data-cy="sign-in-with-google-button"
       aria-label="sign in with google"
       onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
       className="rounded-full bg-gray-2 hover:bg-gray font-bold px-3 py-1.5 w-full flex justify-center items-center"

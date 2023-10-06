@@ -52,6 +52,7 @@ export default function DashboardClient({ booksData }: { booksData: BooksProps[]
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 grid-rows-1 gap-10">
           {memoizedFilteredData.map((item, index) => (
             <div
+              data-cy="book-card"
               key={index + 1}
               className="dark:bg-graydark bg-bodydark1 rounded-md overflow-hidden"
             >
@@ -90,6 +91,7 @@ export default function DashboardClient({ booksData }: { booksData: BooksProps[]
                 <div className="w-full flex justify-end items-center">
                   <button
                     type="button"
+                    data-cy="add-to-wishlist-button"
                     aria-label="pinjam buku"
                     onClick={() => handleAdd(item)}
                     className="bg-primary px-3 py-1.5 text-white font-bold rounded-md w-fit"

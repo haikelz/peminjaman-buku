@@ -7,6 +7,7 @@ export function DarkModeSwitcher() {
 
   return (
     <button
+      data-cy="dark-mode-switcher"
       type="button"
       aria-label="switch theme"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}

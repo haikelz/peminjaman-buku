@@ -46,6 +46,7 @@ export function Searchbar() {
         </svg>
       </div>
       <input
+        data-cy="searchbar"
         type="search"
         name="search"
         value={searchBook}

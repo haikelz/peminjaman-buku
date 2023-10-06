@@ -34,6 +34,7 @@ export default function RekomendasiBuku() {
     <>
       {isRekomendasi ? (
         <div
+          data-cy="rekomendasi-buku"
           className={tw(
             "w-full min-h-screen max-w-full overflow-hidden fixed",
             "p-4 top-0 left-0 flex justify-center z-99999 items-center bg-black-2/70",
@@ -46,6 +47,7 @@ export default function RekomendasiBuku() {
             <div className="flex justify-between items-center w-full">
               <h1 className="font-bold text-2xl dark:text-white text-black">Rekomendasi buku:</h1>
               <button
+                data-cy="close-modal-button"
                 type="button"
                 aria-label="close modal"
                 onClick={handleClick}

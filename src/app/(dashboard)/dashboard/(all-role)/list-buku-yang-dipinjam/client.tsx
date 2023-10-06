@@ -120,6 +120,9 @@ export default function ListBukuYangDipinjamClient() {
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <div className="flex items-center">
                     <button
+                      type="button"
+                      aria-label="kembalikan"
+                      data-cy="kembalikan-button"
                       className="bg-primary rounded-md px-3.5 text-white font-bold py-1.5"
                       onClick={() => handleReturnBook(item.id, item.title, item.tgl_pengembalian)}
                     >

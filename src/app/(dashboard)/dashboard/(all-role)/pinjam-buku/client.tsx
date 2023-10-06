@@ -113,6 +113,9 @@ export default function PinjamBukuClient({ session }: { session: Session }) {
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <div className="flex items-center space-x-3.5">
                     <button
+                      type="button"
+                      aria-label="delete"
+                      data-cy="delete-button"
                       className="bg-danger rounded-md px-3.5 text-white font-bold py-1.5"
                       onClick={() => {
                         handleDelete(item.id as string);
@@ -125,6 +128,9 @@ export default function PinjamBukuClient({ session }: { session: Session }) {
                       Delete
                     </button>
                     <button
+                      type="button"
+                      aria-label="pinjam buku"
+                      data-cy="pinjam-buku-button"
                       className="bg-primary rounded-md px-3.5 text-white font-bold py-1.5"
                       onClick={() => handleBorrowBook(item)}
                     >

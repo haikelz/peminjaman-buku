@@ -19,7 +19,7 @@ export default async function LoginAdmin() {
 
   return (
     <div className="flex flex-col min-h-screen justify-center items-center p-4">
-      <LoginAdminClient />;
+      <LoginAdminClient />
     </div>
   );
 }

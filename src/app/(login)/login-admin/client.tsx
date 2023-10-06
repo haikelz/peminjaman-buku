@@ -43,7 +43,7 @@ export default function LoginAdminClient() {
       data-cy="login-admin-form"
     >
       <Image src="/logo.svg" alt="logo" width={300} height={300} data-cy="login-admin-logo" />
-      <h3 className="text-2xl font-bold text-center my-7" data-cy="login-admin-title">Login as admin</h3>
+      <h3 className="text-2xl font-bold text-center my-7 text-black" data-cy="login-admin-title">Login as admin</h3>
       <div className="space-y-3 w-full">
         <div>
           <input

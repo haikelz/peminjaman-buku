@@ -59,6 +59,10 @@
 
 ![ss 8](/public/images/docs/ss-8.png)
 
+## Resource
+
+- [Books data and images](https://github.com/benoitvallon/100-best-books)
+
 ## Supports
 
 - [Github Sponsor](https://github.com/sponsors/haikelz)

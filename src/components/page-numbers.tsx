@@ -18,7 +18,8 @@ export default function PageNumbers(
           type="button"
           aria-label="per page"
           className={tw(
-            "cursor-pointer px-4 py-2 bg-primary text-white font-bold rounded-md duration-200 transition-all",
+            "cursor-pointer px-4 py-2 bg-primary text-white font-bold",
+            "rounded-md duration-200 transition-all",
             currentPage === page ? "bg-meta-1" : "",
           )}
           onClick={() => setCurrentPage(page)}

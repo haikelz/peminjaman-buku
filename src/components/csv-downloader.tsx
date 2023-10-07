@@ -18,6 +18,7 @@ type CSVDownloaderProps = {
 export default function CSVDownloader({ filename, data }: CSVDownloaderProps) {
   return (
     <CSVLink
+      data-cy="csv-download-button"
       filename={filename}
       data={data}
       className="bg-primary text-white px-4 py-1.5 rounded-md font-bold"

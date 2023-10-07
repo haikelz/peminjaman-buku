@@ -1,8 +1,6 @@
 import { BooksProps } from "~types";
 
-type BooksWithoutId = Omit<BooksProps, "id">;
-
-export const booksData: BooksWithoutId[] = [
+export const booksData: Omit<BooksProps, "id">[] = [
   {
     author: "Chinua Achebe",
     country: "Nigeria",

@@ -6,7 +6,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 /**
  * A custom hook to handle pagination.
  * Basically we set the total of all data, total data per page, and page numbers(total of all data / total data per page)
- * @param {Array<T>} data
+ * @param {Array<T>} data - data that want to paginate
  * @return {Object} currentPage, setCurrentPage, pageNumbers, currentData
  */
 

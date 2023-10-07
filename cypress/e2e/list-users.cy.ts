@@ -11,6 +11,11 @@ describe("List users page", () => {
     cy.get(`[data-cy="dark-mode-switcher"]`).should("be.visible");
     cy.get(`[data-cy="dark-mode-switcher"]`).click("center");
 
+    // table data
     cy.get(`[data-cy="table-data"]`).should("be.visible");
+
+    // csv download button
+    cy.get(`[data-cy="csv-download-button"]`).should("be.visible");
+    cy.get(`[data-cy="csv-download-button"]`).click("center");
   });
 });

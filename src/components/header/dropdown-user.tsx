@@ -19,9 +19,7 @@ export function DropdownUser() {
 
   function handleLogout() {
     signOut({ callbackUrl: "/" });
-
     localStorage.removeItem("is-rekomendasi");
-    localStorage.removeItem("date-rekomendasi");
   }
 
   useEffect(() => {
@@ -46,6 +44,7 @@ export function DropdownUser() {
       if (!dropdownOpen || keyCode !== 27) return;
       setDropdownOpen(false);
     };
+    
     document.addEventListener("keydown", keyHandler);
     return () => document.removeEventListener("keydown", keyHandler);
   }, [dropdownOpen, setDropdownOpen]);

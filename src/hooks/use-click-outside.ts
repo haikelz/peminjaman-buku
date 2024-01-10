@@ -1,14 +1,14 @@
 "use client";
 
-/**
- * A custom hook
- * @param {Dispatch<SetStateAction<boolean>>} set setter
- * @param {RefObject<HTMLDivElement>} ref reference to div element
- */
 import { SetStateAction } from "jotai";
 import { Dispatch, RefObject, useCallback, useEffect } from "react";
 import { saveDataToLocalStorage } from "~lib/utils/save-data-to-local-storage";
 
+/**
+ * A custom hook that contains logic for close a modal if we click outside
+ * @param {(param: boolean) => void} set - setter
+ * @param {RefObject<HTMLDivElement>} ref - reference to div modal element
+ */
 export function useClickOutside(
   set: Dispatch<SetStateAction<boolean>>,
   ref: RefObject<HTMLDivElement>,

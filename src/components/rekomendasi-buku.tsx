@@ -44,7 +44,7 @@ export default function RekomendasiBuku() {
             className="bg-gray dark:bg-boxdark-2 p-6 rounded-md max-w-4xl w-full flex-col"
             ref={rekomendasiRef}
           >
-            <div className="flex justify-between bg-black items-center w-full">
+            <div className="flex justify-between items-center w-full">
               <h1 className="font-bold text-2xl dark:text-white text-black">Rekomendasi buku:</h1>
               <button
                 data-cy="close-modal-button"

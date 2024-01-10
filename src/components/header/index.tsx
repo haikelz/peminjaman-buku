@@ -10,9 +10,7 @@ const DarkModeSwitcher = dynamic(
   () => import("./dark-mode-switcher").then((obj) => obj.DarkModeSwitcher),
   { ssr: false },
 );
-
 const Searchbar = dynamic(() => import("./searchbar").then((obj) => obj.Searchbar));
-
 const DropdownUser = dynamic(() => import("./dropdown-user").then((obj) => obj.DropdownUser));
 
 export default function Header({ sidebarOpen, setSidebarOpen }: HeaderProps) {

@@ -14,6 +14,38 @@
 - Export the users list to CSV format and only admin who can download it.
 - Books recommendation
 
+## Website Structure
+
+![website structure](public/images/docs/website-structure.png)
+
+## Videos
+
+[![Videos](public/images/docs/ss-2.png)](https://youtu.be/LfMIszlt4WM)
+
+## Screenshots
+
+![ss 1](/public/images/docs/ss-1.png)
+
+![ss 2](/public/images/docs/ss-2.png)
+
+![ss 3](/public/images/docs/ss-3.png)
+
+![ss 4](/public/images/docs/ss-4.png)
+
+![ss 5](/public/images/docs/ss-5.png)
+
+![ss 6](/public/images/docs/ss-6.png)
+
+![ss 7](/public/images/docs/ss-7.png)
+
+![ss 8](/public/images/docs/ss-8.png)
+
+## Tech Stack
+
+- Next JS 13
+- Tailwind CSS with [Tail Dashboard](https://github.com/TailAdmin/free-nextjs-admin-dashboard)
+- Jotai
+
 ## Getting Started
 
 - Clone this project, install all dependencies with `pnpm install`.
@@ -34,30 +66,6 @@
 - After you fill all the needed env variables, run the project by typing `pnpm run dev`.
 - Go to `http://localhost:3000` and see the result.
 - By the way, the default username and password for admin role is: **username = pak_dengklek**, **password = 102938**
-
-## Tech Stack
-
-- Next JS 13
-- Tailwind CSS with [Tail Dashboard](https://github.com/TailAdmin/free-nextjs-admin-dashboard)
-- Jotai
-
-## Screenshots
-
-![ss 1](/public/images/docs/ss-1.png)
-
-![ss 2](/public/images/docs/ss-2.png)
-
-![ss 3](/public/images/docs/ss-3.png)
-
-![ss 4](/public/images/docs/ss-4.png)
-
-![ss 5](/public/images/docs/ss-5.png)
-
-![ss 6](/public/images/docs/ss-6.png)
-
-![ss 7](/public/images/docs/ss-7.png)
-
-![ss 8](/public/images/docs/ss-8.png)
 
 ## Resource
 

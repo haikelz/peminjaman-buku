@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { options } from "~app/api/auth/[...nextauth]/options";
 import Breadcrumb from "~components/breadcrumb";
 
-import ListPeminjamClient from "./client";
+import ListBukuYangDipinjamClient from "./client";
 
 export const metadata: Metadata = {
   title: "List buku yang dipinjam",
@@ -21,7 +21,7 @@ export default async function ListBukuYangDipinjam() {
   return (
     <div>
       <Breadcrumb name="List Buku yang Dipinjam" />
-      <ListPeminjamClient />
+      <ListBukuYangDipinjamClient />
     </div>
   );
 }
